@@ -145,17 +145,21 @@ Class.forName("com.mysql.jdbc.Driver");
 
 	try{
 
-		Connection miConexion = DriverManager.getConnection(d1.getDireccionBaseDatos(), d1.getUsuarioBaseDatos(), d1.getContraseñaBaseDatos());
+		Connection miConexion = DriverManager.getConnection(d1.getDireccionBaseDatos(), d1.getUsuarioBaseDatos(), d1.getContraseÃ±aBaseDatos());
 		
 		Statement miStatement = miConexion.createStatement();
 		
 		ResultSet miResultado = miStatement.executeQuery(instruccionSql);
 		
 		while(miResultado.next()){
+			out.println("<br /><br />");
+			out.println("<div class='col-md-4'>");
+			out.println("<form>");
 			out.println("<strong>Producto</strong>");
 			out.println("<br />");
 			out.println("Codigo Articulo: "+miResultado.getString(1) + " <br /> " + miResultado.getString(2) + " <br />Seccion: " + miResultado.getString(3) + " <br />$ " + miResultado.getString(4));
-			out.println("<br /><br />");
+			out.println("</form>");
+			out.println("</div>");
 		}
 		
 		
@@ -304,7 +308,7 @@ Class.forName("com.mysql.jdbc.Driver");
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <p>Copyright © MyWebsite. 2019 2020 Derechos Reservados.</p>
+        <p>Copyright Â© MyWebsite. 2019 2020 Derechos Reservados.</p>
       </div>
     </div>
   </div>
