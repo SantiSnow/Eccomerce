@@ -39,7 +39,7 @@ margin: 20px;
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav">
 <li class="active"><a href="#">Link 1<span class="sr-only">(current)</span></a> </li>
-<li><a href="#">Link 2</a> </li>
+<li><a href="paginaEmpleados.php">Pagina Empleados</a> </li>
 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Menu <span class="caret"></span></a>
 <ul class="dropdown-menu">
 <li><a href="#">Sub link</a> </li>
@@ -156,9 +156,11 @@ margin: 20px;
 			completa sin formato haciendo click aqui:</p>
 			<a href="ListaCompletaDeProductosSinFormato.php" title="Lista de productos">Lista completa de productos</a>
 			<br />
-			<br />
 			<p>Si desea eliminar registros de la base de datos, haga click aqui:</p>
-			<a href="eliminarRegistros.php" title="Lista de productos">Formulario para eliminar productos</a>			
+			<a href="eliminarRegistros.php" title="Lista de productos">Formulario para eliminar productos</a>
+			<br />		
+			<p>Si desea modificar articulos de la base de datos, haga click aqui:</p>
+			<a href="modificaRegistros.php" title="Lista de productos">Formulario para modificar precios</a>	
 		</div>
 	</div>
 </div>
@@ -297,7 +299,7 @@ San Juan, CABA, 9911<br>
 <div class="container">
 <div class="row">
 <div class="col-xs-12">
-<p>Copyright © MyWebsite. 2019 2020 Derechos Reservados.</p>
+<p>Copyright Â© MyWebsite. 2019 2020 Derechos Reservados.</p>
 </div>
 </div>
 </div>
