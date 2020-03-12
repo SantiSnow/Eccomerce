@@ -43,7 +43,7 @@ margin:20px;
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav">
 <li class="active"><a href="#">Link 1<span class="sr-only">(current)</span></a> </li>
-<li><a href="#">Link 2</a> </li>
+<li><a href="paginaEmpleados.php">Pagina Empleados</a> </li>
 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Menu <span class="caret"></span></a>
 <ul class="dropdown-menu">
 <li><a href="#">Sub link</a> </li>
@@ -187,20 +187,23 @@ margin:20px;
                              *  y en php7 ya ni siquiera existen
                              *  
                              */
-                            
-                            
-                        echo "<strong>Producto: </strong>";
+                        echo "<div class='col-md-4'>";
+                        echo "<form>";
+                        echo "<strong >Producto: </strong>";
                         echo "<br />";
+                        echo "<img src='images/400X200.gif' alt='Thumbnail Image 1' class='img-responsive'>";
                         echo "<br />";
-                        echo $fila ['CODIGOARTICULO'];
+                        echo "Codigo Articulo: " . $fila ['CODIGOARTICULO'];
                         echo "<br />";
-                        echo $fila ['NOMBREARTICULO'];
+                        echo "Nombre Articulo: " . $fila ['NOMBREARTICULO'];
                         echo "<br />";
-                        echo $fila ['SECCION'];
+                        echo "Seccion: " . $fila ['SECCION'];
                         echo "<br />";
                         echo "Precio: $" . $fila ['PRECIO'];
                         echo "<br />";
                         echo "<br />";
+                        echo "</form>";
+                        echo "</div>";
                     
                     }
                 }
@@ -347,7 +350,7 @@ San Juan, CABA, 9911<br>
 <div class="container">
 <div class="row">
 <div class="col-xs-12">
-<p>Copyright © MyWebsite. 2019 2020 Derechos Reservados.</p>
+<p>Copyright Â© MyWebsite. 2019 2020 Derechos Reservados.</p>
 </div>
 </div>
 </div>
