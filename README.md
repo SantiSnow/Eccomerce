@@ -35,6 +35,7 @@ Tambien estan las tablas subidas en la carpeta tablas
 
 
 
+
 Posibles errores y soluciones si descarga el repositorio y el proyecto no funciona:
 
 Revise usuario, contraseña y puertos de la base de datos.
