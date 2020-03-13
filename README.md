@@ -31,11 +31,14 @@ y otra llamada: empleados (para el sistema de loggeo)
 
 Servidores usados: TomCat 8.5 y Wamp (mysql 5.7)
 
+Tambien estan las tablas subidas en la carpeta tablas
 
 
-Posibles errores si descarga el repositorio y el proyecto no funciona:
+
+Posibles errores y soluciones si descarga el repositorio y el proyecto no funciona:
 
 Revise usuario, contraseña y puertos de la base de datos.
 Revise versiones de tomcat y wamp
 Revise sentencias sql y que sus bases de datos lleven los mismos nombres
 Revise versiones: (aunque git deberia resolver eso) mysql 5.7.26, php 7.3.5 y java 11
+Revise que las tablas fueron subidas o importadas en el formato correspondiente
