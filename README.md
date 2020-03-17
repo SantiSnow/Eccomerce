@@ -3,6 +3,38 @@ Ecommerce realizado en java ee, mysql, php, bootstrap.
 
 Este Ecommerce esta pensado para sitios de venta electronica, desde luego es un ejemplo adaptable a varios comercios, por ello solo tiene dummys ilustrativos.
 
+
+//--------------------------------------------------------------------------------------------------------------------//
+
+
+
+Actualizacion Eccomerce 2.0.0:
+
+Parche de seguridad - se actualizo la seguridad en las consultas sql para evitar crackeos.
+Se actualizo la seguridad contra inyeccion sql y se cambio el formato de busqueda
+
+Parche en el motor de busqueda actualizado - Ahora el motor de busqueda incluye resultados mas variados
+y con resultados relacionados en un aparte para que el usuarios los pueda ver
+
+Se actualizaron las imagenes para que la pagina y la base de datos tenga imagenes relacionadas en el servidor
+incluyendo tambien una url para cada producto
+
+Cada producto incluye ademas una lista de tags o descripcion para que el motor de busqueda funcione mejor.
+
+El campo seccion ahora es un select para evitar errores
+
+Se incluyeron Categorias en la pagina web
+
+Se mejoro los estilos que muestran las imagenes.
+
+Proximo parche: Se incluiran todos las actualizaciones en todas las paginas jsp para java, se mejorara la seguridad en 
+las busquedas y en las contraseñas de los usuarios.
+
+
+//--------------------------------------------------------------------------------------------------------------------//
+
+
+
 Tecnologias usadas:
 Java. Jdbc, jsp
 Mysql
