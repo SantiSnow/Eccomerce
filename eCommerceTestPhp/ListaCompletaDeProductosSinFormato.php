@@ -23,6 +23,13 @@ margin:20px;
 
 }
 
+#imagenBusqueda{
+
+    width: 200px;
+    height: 150px;
+
+}
+
 </style>
 
 
@@ -37,22 +44,22 @@ margin:20px;
 <!-- Aca colocamos Brand o logotipo y toggle agrupado para disp mobiles -->
 <div class="navbar-header">
 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-<a class="navbar-brand" href="index.php">Logo</a></div>
+<a class="navbar-brand" href="index.php">CompuItuzaingo</a></div>
 
 <!-- Nav links -->
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav">
-<li class="active"><a href="#">Link 1<span class="sr-only">(current)</span></a> </li>
-<li><a href="paginaEmpleados.php">Pagina Empleados</a> </li>
-<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Menu <span class="caret"></span></a>
+<li class="active"><a href="login.php">Pagina empleados</a> </li>
+<li><a href="busquedaCategorias.php">Categorias</a> </li>
+<li class="dropdown">
 <ul class="dropdown-menu">
-<li><a href="#">Sub link</a> </li>
-<li><a href="#">Sub link 2</a> </li>
-<li><a href="#">Sub link 3</a> </li>
+<li><a href="#"></a> </li>
+<li><a href="#"></a> </li>
+<li><a href="#"></a> </li>
 <li role="separator" class="divider"></li>
-<li><a href="#">Separated link</a> </li>
+<li><a href="#"></a> </li>
 <li role="separator" class="divider"></li>
-<li><a href="#">Link 4</a> </li>
+<li><a href="#"></a> </li>
 </ul>
 </li>
 </ul>
@@ -64,18 +71,13 @@ margin:20px;
 </div>
 <button type="submit" class="btn btn-default">Enviar</button>
 </form>
+
+
 <ul class="nav navbar-nav navbar-right hidden-sm">
-<li><a href="#">Link 3</a> </li>
-<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Navegar <span class="caret"></span></a>
-<ul class="dropdown-menu">
-<li><a href="#">Accion 1</a> </li>
-<li><a href="#">Accion 2</a> </li>
-<li><a href="#">Accion 3</a> </li>
-<li role="separator" class="divider"></li>
-<li><a href="#">Otro</a> </li>
+<li><a href="ListaCompletaDeProductosSinFormato.php" title="Todos los productos">Productos</a> </li>
+
 </ul>
-</li>
-</ul>
+
 </div>
 <!-- /.navbar-collapse -->
 </div>
@@ -174,7 +176,8 @@ margin:20px;
                 }else{
                     while(($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC))==true){
                         
-                            
+                        $rutaImg = $fila ['FOTO'];
+                        $url = $fila ['URL'];
                             /*
                              * 
                              * importante: siempre utilzar MYSQLI cuando definimos constantes, funciones o clase
@@ -188,7 +191,7 @@ margin:20px;
                         echo "<form>";
                         echo "<strong>Producto: </strong>";
                         echo "<br />";
-                        echo "<img src='images/400X200.gif' alt='Thumbnail Image 1' class='img-responsive'>";
+                        echo "<a href='" . $url . "'><img src='images/" . $rutaImg . "' alt='Imagen del producto' class='img-responsive' id='imagenBusqueda'></a>";
                         echo "<br />";
                         echo "Codigo Articulo: " . $fila ['CODIGOARTICULO'];
                         echo "<br />";
@@ -198,6 +201,12 @@ margin:20px;
                         echo "<br />";
                         echo "Precio: $" . $fila ['PRECIO'];
                         echo "<br />";
+                        if($fila ['STOCK'] > 0){
+                            echo "Hay stock del producto.";
+                        }
+                        else{
+                            echo "No hay stock del producto";
+                        }
                         echo "<br />";
                         echo "<br />";
                         echo "</form>";
