@@ -38,7 +38,7 @@ margin: 20px;
 <!-- Nav links -->
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav">
-<li class="active"><a href="#">Link 1<span class="sr-only">(current)</span></a> </li>
+<li class="active"><a href="busquedaCategorias.php">Categorias</a> </li>
 <li><a href="paginaEmpleados.php">Pagina Empleados</a> </li>
 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Menu <span class="caret"></span></a>
 <ul class="dropdown-menu">
@@ -128,23 +128,44 @@ margin: 20px;
 			<br />
 			<br />
 			<div class=form-group>
-    			<form method="get" action="insertarRegistro.php">
+    			<form method="post" action="insertarRegistro.php" enctype="multipart/form-data">
     			
     				<p>Bienvenido a la seccion para empleados para el sistema de productos. Aqui puede introducir productos a la base
-    				de datos del sistema, ingrese codigo, precio, nombre y seccion sin dejar campos sin rellenar o no se realizara la
-    				consulta. Para que la base de datos se mantenga organizada se recomienda introducir los productos comenzando por
+    				de datos del sistema, ingrese los campos sin dejar campos sin rellenar o no se realizara la consulta, e ingrese detalles
+    				varios del producto. Para que la base de datos se mantenga organizada se recomienda introducir los productos comenzando por
     				primer letra mayusculas, si no conoce los datos del producto, consulte a su supervisor.</p>
         			<label for="codigoarticulo">Codigo Articulo</label>
-        			<input type="text" name="codigoarticulo" placeholder="Codigo Articulo" class="form-control" required/>
+        			<input type="text" name="codigoarticulo" placeholder="Codigo" class="form-control" required/>
         			<br />
         			<label for="nombrearticulo">Nombre Articulo</label>
-        			<input type="text" name="nombrearticulo" placeholder="Nombre Articulo" class="form-control" required/>
+        			<input type="text" name="nombrearticulo" placeholder="Nombre" class="form-control" required/>
         			<br />
         			<label for="seccion">Seccion</label>
-        			<input type="text" name="seccion" placeholder="Seccion" class="form-control" required/>
+        			<select name="seccion" class="form-control" required>
+        				<option value="ACCESORIOS">Accesorios</option>
+        				<option value="ALMACENAMIENTO">Almacenamiento</option>
+        				<option value="CELULARES">Celulares</option>
+        				<option value="COMPUTADORAS">Computadoras</option>
+        				<option value="IMPRESORAS">Impresoras</option>
+        				<option value="PERIFERICOS">Perifericos</option>
+        				<option value="PORTATILES">Portatiles</option>
+        			</select>
         			<br />
         			<label for="precio">Precio</label>
         			<input type="text" name="precio" placeholder="Precio" class="form-control" required/>
+        			<br />
+        			<label for="stock">Stock</label>
+        			<input type="text" name="stock" placeholder="Stock articulo" class="form-control" required/>
+        			<br />
+        			<label for="detalle">Detalles</label>
+        			<input type="text" name="detalle" placeholder="Tags Articulo" class="form-control" required/>
+        			<br />
+        			<label for="url">Link</label>
+        			<input type="text" name="url" placeholder="Url Articulo" class="form-control" required/>
+        			<br />
+        			<label for="imagen">Imagen</label>
+        			<input type="file" name="imagen" size=20>
+        			<br />
         			<br />
         			<button type="submit" class="btn btn-primary">Enviar</button>
     			</form>
@@ -156,8 +177,10 @@ margin: 20px;
 			completa sin formato haciendo click aqui:</p>
 			<a href="ListaCompletaDeProductosSinFormato.php" title="Lista de productos">Lista completa de productos</a>
 			<br />
+			<br />
 			<p>Si desea eliminar registros de la base de datos, haga click aqui:</p>
 			<a href="eliminarRegistros.php" title="Lista de productos">Formulario para eliminar productos</a>
+			<br />
 			<br />		
 			<p>Si desea modificar articulos de la base de datos, haga click aqui:</p>
 			<a href="modificaRegistros.php" title="Lista de productos">Formulario para modificar precios</a>	
