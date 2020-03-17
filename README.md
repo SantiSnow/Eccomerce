@@ -3,7 +3,8 @@ Ecommerce realizado en java ee, mysql, php, bootstrap.
 
 Este Ecommerce esta pensado para sitios de venta electronica, desde luego es un ejemplo adaptable a varios comercios, por ello solo tiene dummys ilustrativos.
 
-
+//--------------------------------------------------------------------------------------------------------------------//
+IMPORTANTE: para que las imagenes funcionen, hay que extraerlas del images.rar ubicado en la carpeta images, y colocarlas en dicha carpeta. De esa forma las busquedas, paginas de categorias y detalle de producto mostraran las imagenes.
 //--------------------------------------------------------------------------------------------------------------------//
 
 
