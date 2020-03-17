@@ -38,7 +38,7 @@ margin: 20px;
 <!-- Nav links -->
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav">
-<li class="active"><a href="#">Link 1<span class="sr-only">(current)</span></a> </li>
+<li class="active"><a href="busquedaCategorias.php">Categorias</a> </li>
 <li><a href="paginaEmpleados.php">Pagina Empleados</a> </li>
 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Menu <span class="caret"></span></a>
 <ul class="dropdown-menu">
@@ -133,19 +133,40 @@ margin: 20px;
 			
 			 <?php 
             
-			 $dbdirec = "localhost";
-			 $dbnombre = "usuarios";
-			 $dbusr = "root";
-			 $dbpassword = "";
-			 
-			 $codigo= $_GET["codigoarticulo"];
-			 $nombreart= $_GET["nombrearticulo"];
-             $seccionart = $_GET["seccion"];
-             $precio = $_GET["precio"];
+			 require("conexion.php");
                 
              $conexion = mysqli_connect($dbdirec, $dbusr, $dbpassword);
-                
-                mysqli_set_charset($conexion, "utf8");
+             //datos text
+             $codigo= mysqli_escape_string($conexion ,$_POST["codigoarticulo"]);
+             $nombreart= mysqli_escape_string($conexion ,$_POST["nombrearticulo"]);
+             $seccionart = mysqli_escape_string($conexion ,$_POST["seccion"]);
+             $precio = mysqli_escape_string($conexion ,$_POST["precio"]);
+             $stock = mysqli_escape_string($conexion ,$_POST["stock"]);
+             $detalle = mysqli_escape_string($conexion ,$_POST["detalle"]);
+             $url = mysqli_escape_string($conexion ,$_POST["url"]);
+             
+             //imagen
+             $nombreImagen = $_FILES['imagen']['name'];
+             $tipoImagen = $_FILES['imagen']['type'];
+             $tamImagen = $_FILES['imagen']['size'];
+             
+             if($tamImagen<=52428800){
+                 if($tipoImagen == "image/jpeg" || $tipoImagen == "image/jpg" || $tipoImagen == "image/png" || $tipoImagen == "image/gif"){
+                     //Ruta del destino
+                     $destino = $_SERVER['DOCUMENT_ROOT'] . "/eCommerceTestPhp/images/";
+                     //carpeta temporal
+                     move_uploaded_file($_FILES['imagen']['tmp_name'], $destino.$nombreImagen);
+                 }
+                 else{
+                     echo "Solo se permiten archivos en formato Jpg, gif o png. <br />";
+                 }
+             }else{
+                 echo "El archivo imagen que se intento subir es demasiado grande.";
+                 echo "<br />";
+             }
+             
+             
+             mysqli_set_charset($conexion, "utf8");
                 
                 if(mysqli_connect_errno()){
                     echo "Fallo la conexion con la base de datos";
@@ -154,7 +175,7 @@ margin: 20px;
                 
                 mysqli_select_db($conexion, $dbnombre)or die ("No se encuentra la base de datos");
                 
-                $consulta = "INSERT INTO PRODUCTOS (CODIGOARTICULO, NOMBREARTICULO, SECCION, PRECIO) VALUES ('$codigo', '$nombreart', '$seccionart', $precio)";
+                $consulta = "INSERT INTO PRODUCTOS (CODIGOARTICULO, NOMBREARTICULO, SECCION, PRECIO, STOCK, FOTO, DESCRIPCION, URL) VALUES ('$codigo', '$nombreart', '$seccionart', $precio, '$stock', '$nombreImagen','$detalle','$url')";
                 
                 $resultado = mysqli_query($conexion, $consulta);
                 
