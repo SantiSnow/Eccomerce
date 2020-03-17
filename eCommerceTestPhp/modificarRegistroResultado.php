@@ -38,7 +38,7 @@ margin: 20px;
 <!-- Nav links -->
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav">
-<li class="active"><a href="#">Link 1<span class="sr-only">(current)</span></a> </li>
+<li class="active"><a href="busquedaCategorias.php">Categorias</a> </li>
 <li><a href="paginaEmpleados.php">Pagina Empleados</a> </li>
 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Menu <span class="caret"></span></a>
 <ul class="dropdown-menu">
@@ -130,16 +130,13 @@ margin: 20px;
 			
 			 <?php 
             
-			 $dbdirec = "localhost";
-			 $dbnombre = "usuarios";
-			 $dbusr = "root";
-			 $dbpassword = "";
+			 require("conexion.php");
 			 
-			 $codigo= $_GET["codigoarticulo"];
-			 $precio= $_GET["precioarticulo"];
-			 $stock= $_GET["stock"];
+			 $conexion = mysqli_connect($dbdirec, $dbusr, $dbpassword);
 			 
-                $conexion = mysqli_connect($dbdirec, $dbusr, $dbpassword);
+			 $codigo= mysqli_escape_string($conexion ,$_POST["codigoarticulo"]);
+			 $precio= mysqli_escape_string($conexion ,$_POST["precioarticulo"]);
+			 $stock= mysqli_escape_string($conexion ,$_POST["stock"]);
                 
                 mysqli_set_charset($conexion, "utf8");
                 
@@ -325,7 +322,7 @@ San Juan, CABA, 9911<br>
 <div class="container">
 <div class="row">
 <div class="col-xs-12">
-<p>Copyright © MyWebsite. 2019 2020 Derechos Reservados.</p>
+<p>Copyright Â© MyWebsite. 2019 2020 Derechos Reservados.</p>
 </div>
 </div>
 </div>
