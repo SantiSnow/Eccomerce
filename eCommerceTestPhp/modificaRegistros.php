@@ -38,7 +38,7 @@ margin: 20px;
 <!-- Nav links -->
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav">
-<li class="active"><a href="#">Link 1<span class="sr-only">(current)</span></a> </li>
+<li class="active"><a href="busquedaCategorias.php">Categorias</a> </li>
 <li><a href="paginaEmpleados.php">Pagina Empleados</a> </li>
 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Menu <span class="caret"></span></a>
 <ul class="dropdown-menu">
@@ -128,18 +128,18 @@ margin: 20px;
 			<br />
 			<br />
 			<div class=form-group>
-    			<form method="get" action="modificarRegistroResultado.php">
+    			<form method="post" action="modificarRegistroResultado.php">
     				<p>Bienvenido a la seccion para empleados para el sistema de productos. Aqui puede modificar productos de la base
     				de datos del sistema, ingrese codigo del producto para buscarlo, si no conoce los datos del producto, consulte a 
     				su supervisor.</p>
         			<label for="codigoarticulo">Codigo Articulo</label>
-        			<input tipe="text" name="codigoarticulo" placeholder="Codigo Articulo" class="form-control"/>
+        			<input tipe="text" name="codigoarticulo" placeholder="Codigo Articulo" class="form-control" required/>
         			<br />
         			<label for="precioarticulo">Precio Articulo</label>
-        			<input tipe="text" name="precioarticulo" placeholder="Precio Articulo" class="form-control"/>
+        			<input tipe="text" name="precioarticulo" placeholder="Precio Articulo" class="form-control" required/>
         			<br />
         			<label for="stock">Stock</label>
-        			<input tipe="text" name="stock" placeholder="Stock Articulos" class="form-control"/>
+        			<input tipe="text" name="stock" placeholder="Stock Articulos" class="form-control" required/>
         			<br />
         			<button type="submit" class="btn btn-primary">Enviar</button>
     			</form>
@@ -294,7 +294,7 @@ San Juan, CABA, 9911<br>
 <div class="container">
 <div class="row">
 <div class="col-xs-12">
-<p>Copyright © MyWebsite. 2019 2020 Derechos Reservados.</p>
+<p>Copyright Â© MyWebsite. 2019 2020 Derechos Reservados.</p>
 </div>
 </div>
 </div>
