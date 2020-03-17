@@ -19,7 +19,20 @@
 
 #resultadosBusquedaTitulo{
 
-margin:20px;
+    margin:20px;
+
+}
+
+#imagenBusqueda{
+
+    width: 200px;
+    height: 150px;
+
+}
+
+#relacion{
+
+    text-align: center;
 
 }
 
@@ -37,22 +50,21 @@ margin:20px;
 <!-- Aca colocamos Brand o logotipo y toggle agrupado para disp mobiles -->
 <div class="navbar-header">
 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-<a class="navbar-brand" href="index.php">Logo</a></div>
+<a class="navbar-brand" href="index.php">CompuItuzaingo</a></div>
 
 <!-- Nav links -->
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav">
-<li class="active"><a href="#">Link 1<span class="sr-only">(current)</span></a> </li>
-<li><a href="paginaEmpleados.php">Pagina Empleados</a> </li>
-<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Menu <span class="caret"></span></a>
+<li class="active"><a href="busquedaCategorias.php">Categorias</a> </li>
+<li><a href="login.php">Pagina Empleados</a> </li>
 <ul class="dropdown-menu">
-<li><a href="#">Sub link</a> </li>
-<li><a href="#">Sub link 2</a> </li>
-<li><a href="#">Sub link 3</a> </li>
+<li><a href="#"></a> </li>
+<li><a href="#"></a> </li>
+<li><a href="#"></a> </li>
 <li role="separator" class="divider"></li>
-<li><a href="#">Separated link</a> </li>
+<li><a href="#"></a> </li>
 <li role="separator" class="divider"></li>
-<li><a href="#">Link 4</a> </li>
+<li><a href="#"></a> </li>
 </ul>
 </li>
 </ul>
@@ -60,21 +72,16 @@ margin:20px;
 
 <form class="navbar-form navbar-right" role="search" action="resultadoBusqueda" method="get">
 <div class="form-group">
-<input type="text" class="form-control" name="buscar" placeholder="Buscar">
+<input type="text" class="form-control" name="buscar" placeholder="Buscar por nombre">
 </div>
 <button type="submit" class="btn btn-default">Enviar</button>
 </form>
+
+<!-- Fin del buscador -->
+
 <ul class="nav navbar-nav navbar-right hidden-sm">
-<li><a href="#">Link 3</a> </li>
-<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Navegar <span class="caret"></span></a>
-<ul class="dropdown-menu">
-<li><a href="#">Accion 1</a> </li>
-<li><a href="#">Accion 2</a> </li>
-<li><a href="#">Accion 3</a> </li>
-<li role="separator" class="divider"></li>
-<li><a href="#">Otro</a> </li>
-</ul>
-</li>
+<li><a href="ListaCompletaDeProductosSinFormato.php" title="Todos los productos">Productos</a> </li>
+
 </ul>
 </div>
 <!-- /.navbar-collapse -->
@@ -141,16 +148,13 @@ margin:20px;
                            
             <?php 
 
-            $busqueda = $_GET["buscar"];
-            
-            
-            
-            
             require("conexion.php");
-
-            $consulta = "SELECT * FROM productos WHERE NOMBREARTICULO LIKE '%$busqueda%'";
-                
+                       
                 $conexion = mysqli_connect($dbdirec, $dbusr, $dbpassword, $dbnombre);
+            
+                $busqueda = mysqli_escape_string($conexion ,$_GET["buscar"]);
+                
+                $consulta = "SELECT * FROM productos WHERE NOMBREARTICULO LIKE '%$busqueda%'";
                 
                 mysqli_set_charset($conexion, "utf8");
                 
@@ -179,7 +183,8 @@ margin:20px;
                 }else{
                     while(($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC))==true){
                         
-                            
+                        $rutaImg = $fila ['FOTO'];
+                        $url = $fila ['URL'];
                             /*
                              * 
                              * importante: siempre utilzar MYSQLI cuando definimos constantes, funciones o clase
@@ -191,7 +196,7 @@ margin:20px;
                         echo "<form>";
                         echo "<strong >Producto: </strong>";
                         echo "<br />";
-                        echo "<img src='images/400X200.gif' alt='Thumbnail Image 1' class='img-responsive'>";
+                        echo "<a href='" . $url . "'><img src='images/" . $rutaImg . "' alt='Imagen del producto' class='img-responsive' id='imagenBusqueda'></a>";
                         echo "<br />";
                         echo "Codigo Articulo: " . $fila ['CODIGOARTICULO'];
                         echo "<br />";
@@ -200,6 +205,13 @@ margin:20px;
                         echo "Seccion: " . $fila ['SECCION'];
                         echo "<br />";
                         echo "Precio: $" . $fila ['PRECIO'];
+                        echo "<br />";
+                        if($fila ['STOCK'] > 0){
+                            echo "Hay stock del producto - " .$fila ['STOCK'] . " unidades.";
+                        }
+                        else{
+                            echo "No hay stock del producto";
+                        }
                         echo "<br />";
                         echo "<br />";
                         echo "</form>";
@@ -216,6 +228,98 @@ margin:20px;
                            
                                     
 			</div>
+			<br />
+			<br />
+<h3 id="relacion">Productos relacionados:</h3>
+
+<div class="container">
+                           
+            <?php 
+
+            require("conexion.php");
+                       
+                $conexion = mysqli_connect($dbdirec, $dbusr, $dbpassword, $dbnombre);
+            
+                $busqueda = mysqli_escape_string($conexion ,$_GET["buscar"]);
+                
+                $consulta = "SELECT * FROM productos WHERE DESCRIPCION LIKE '%$busqueda%'";
+                
+                mysqli_set_charset($conexion, "utf8");
+                
+                if(mysqli_connect_errno()){
+                    echo "Fallo la conexion con la base de datos";
+                    exit();
+                }
+                
+                mysqli_select_db($conexion, $dbnombre)or die ("No se encuentra la base de datos");
+                
+                /*
+                 * para que las funciones y querys acepten utf-8 usamos:
+                 * mysqli_set_charset($conexion, "utf8");
+                 * el nombre de la conexion a la base y el charset que usemos
+                 * 
+                 * si el nombre de la base de datos falla:
+                 * mysqli_select_db($conexion, $db_nombre)or die ("No se encuentra la base de datos");
+                 */
+                
+                $resultado = mysqli_query($conexion, $consulta);
+                
+                if($resultado == null){
+                
+                    echo "No se encontraron productos relacionados.";
+                    
+                }else{
+                    while(($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC))==true){
+                        
+                        $rutaImg = $fila ['FOTO'];
+                        $url = $fila ['URL'];
+                        
+                            /*
+                             * 
+                             * importante: siempre utilzar MYSQLI cuando definimos constantes, funciones o clase
+                             * predefinidas de php, ya que mysql es un conjunto de metodos obsoletos para php 5 
+                             *  y en php7 ya ni siquiera existen
+                             *  
+                             */
+                        echo "<div class='col-md-4'>";
+                        echo "<form>";
+                        echo "<strong >Producto: </strong>";
+                        echo "<br />";
+                        echo "<a href='" . $url . "'><img src='images/" . $rutaImg . "' alt='Imagen del producto' class='img-responsive' id='imagenBusqueda'></a>";
+                        echo "<br />";
+                        echo "Codigo Articulo: " . $fila ['CODIGOARTICULO'];
+                        echo "<br />";
+                        echo "Nombre Articulo: " . $fila ['NOMBREARTICULO'];
+                        echo "<br />";
+                        echo "Seccion: " . $fila ['SECCION'];
+                        echo "<br />";
+                        echo "Precio: $" . $fila ['PRECIO'];
+                        echo "<br />";
+                        if($fila ['STOCK'] > 0){
+                            echo "Hay stock del producto - " .$fila ['STOCK'] . " unidades.";
+                        }
+                        else{
+                            echo "No hay stock del producto";
+                        }
+                        echo "<br />";
+                        echo "<br />";
+                        echo "</form>";
+                        echo "</div>";
+                    
+                    }
+                }
+                
+                
+                mysqli_close($conexion);
+                
+                ?>
+            
+                           
+                                    
+			</div>
+			<br />
+			<br />
+	
 <hr>
 <h2 class="text-center">Productos Destacados</h2>
 <hr>
